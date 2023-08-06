@@ -1,9 +1,14 @@
 import Image from 'next/image'
-
-export default function Home() {
+import getUsers from './lip/getUsers'
+export default  async function Home() {
+  const dataUsers: Promise<Users[]> = getUsers()
+  const data = await dataUsers
+  console.log(data,'1111');
+  
+  
   return (
-   <div className=' bg-black'>
-    flex
+   <div>
+  home page
    </div>
   )
 }
