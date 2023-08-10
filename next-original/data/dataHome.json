@@ -1,0 +1,85 @@
+
+ {
+    "listTool":[
+        {
+            "title":"Job Search",
+            "image":"https://tse2.mm.bing.net/th?id=OIP.d2_X3tlwuj45D1-ST-CuCgHaHa&pid=Api&P=0&h=180",
+            "text":"High quality IT job listings are constantly updated with the most recent options, based on market and search trends."
+        },
+        {
+            "title":"Create your CV",
+            "image":"https://tse2.mm.bing.net/th?id=OIP.d2_X3tlwuj45D1-ST-CuCgHaHa&pid=Api&P=0&h=180",
+            "text":"Create a quality CV to easily be accepted by employers."
+        },
+        {
+            "title":"Blog",
+            "image":"https://tse2.mm.bing.net/th?id=OIP.d2_X3tlwuj45D1-ST-CuCgHaHa&pid=Api&P=0&h=180",
+            "text":"The place to find out and capture the latest salary and job trends."
+        }
+    ],
+
+    "listTopEmployers":[
+        {
+            "title":"Viettel",
+            "city":"HCM - Đà Nắng",
+            "image":"https://itviec.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN09SR3c9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8116cf4b23cb755b3b556d410e98ed210b2f68c4/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFhb3ciLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--bb0ebae071595ab1791dc0ad640ef70a76504047/logo%20Viettel.JPG",
+            "jobs":{
+                "quantity":10,
+                "skills":[".Net", "C#", "python", "Java", "SQL"]
+            }
+                
+            
+        },
+        {
+            "title":"VNG",
+            "city":"Hà Nội - Huế",
+            "image":"https://tse2.mm.bing.net/th?id=OIP.6_EFXjcXZP7ehP9xC5GatQHaHa&pid=Api&P=0&h=180",
+            "jobs":{
+                "quantity":5,
+                "skills":[".Net", "C#", "python", "Java", "SQL"]
+            }
+                
+            
+        },
+        {
+            "title":"FPT Software",
+            "city":"HCM - Hà Nội",
+            "image":"https://itviec.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOEJwSFE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--10a9cdf11d126baa55d2186b1dd97bc867eb9a9e/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFhb3ciLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--bb0ebae071595ab1791dc0ad640ef70a76504047/logo%20FSOFT%20d%E1%BB%8Dc.png",
+            "jobs":{
+                "quantity":7,
+                "skills":[".Net", "C#", "python", "Java", "SQL"]
+            }
+                
+            
+        },
+        {
+            "title":"MB Bank",
+            "city":"HCM - Đà Nắng",
+            "image":"https://itviec.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMmZvSXc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--88c82102b4c6782414b90e4077f75449b9789560/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFhb3ciLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--bb0ebae071595ab1791dc0ad640ef70a76504047/Logo%20MB%20he%20mau%20RGB%2001.png",
+            "jobs":{
+                "quantity":6,
+                "skills":[".Net", "C#", "python", "Java", "SQL"]
+            }
+                
+            
+        },
+        {
+            "title":"SoHa Game",
+            "city":"HCM - Vinh",
+            "image":"https://tse2.mm.bing.net/th?id=OIP.l13tsyvxaQHEOe71iiE9jAHaDt&pid=Api&P=0&h=180",
+            "jobs":{
+                "quantity":3,
+                "skills":[".Net", "C#", "python", "Java", "SQL"]
+            }
+                
+            
+        }
+    ],
+
+    "dataSearch":{
+        "city":["All cities","Hà Nội", "Hồ Chí Minh", "Đà Nẵng"],
+        "jobSunggest":["Java", "ReactJs", ".NET", "Manager", "PHP"]
+    }
+
+    
+   }

@@ -1,0 +1,45 @@
+
+[
+
+    {"title":"All Jobs",
+    "MenuJob": [
+
+        {"title":"Job by Skill",
+        "listJob":[
+            {"title":"Java"}, {"title":"NodeJs"}, {"title":".NET"},
+            {"title":"C#"}, {"title":"FrontEnd"}, {"title":"BackEnd"},
+            {"title":"C++"}, {"title":"Nextjs"}, {"title":"NestJs"},
+            {"title":"ReactJs"}, {"title":"python"}, {"title":"QA QC"},
+            {"title":"Js"}, {"title":"UI UX"}, {"title":"PHP"},
+            {"title":"HTML"}, {"title":"SQL"}, {"title":"Euby"},
+            {"title":"CSS"}, {"title":"linux"}, {"title":"OPP"}
+        ]
+        },
+
+        {"title":"Job by title",
+        "listJob":[
+            {"title":"Java Dev"}, {"title":".NET Dev"}, {"title":"CSS Dev"},
+            {"title":"Ios Dev"}, {"title":"UI UX"}, {"title":"PHP Dev"},
+            {"title":"C# Dev"}, {"title":"linux Dev"}, {"title":"OPP Dev"},
+            {"title":"C++ Dev"}, {"title":"Designer"}, {"title":"Database Adm"},
+            {"title":"ReactJs Dev"}, {"title":"Nextjs Dev"}, {"title":"NestJs Dev"}    
+        ]
+        },
+        {"title":"Job by Company",
+         "listJob":[
+            {"title":"MB Bank"}, {"title":"VNG"}
+         ]
+        },
+        {"title":"Job by city",
+         "listJob":[
+            {"title":"HCM city"}, {"title":".Ha Noi"}
+         ]
+        }
+    ]},
+
+{"title":"IT Companies"},
+
+{"title":"Blog"},
+
+{"title":"Event"}
+]

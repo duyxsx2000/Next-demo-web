@@ -1,29 +1,15 @@
 import { NextResponse } from 'next/server'
- 
-export async function GET() {
-    const todos=[
-        {
-            "userID":1,
-            "title":"hello one",
-            "completed": false,
-            "id":1
-        },
-        {
-            "userID":2,
-            "title":"hello two",
-            "completed": false,
-            "id":1
-        },
-        {
-            "userID":3,
-            "title":"hello three",
-            "completed": false,
-            "id":1
-        }
-    ]
-    console.log(todos);
+
+export async function GET(request: Request) {
     
+  const res = await fetch('https://jsonplaceholder.typicode.com/users')
+  
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+  const data = await res.json()
+
  
- 
-  return NextResponse.json( todos )
+  return NextResponse.json({yeu:"taca"})
 }
