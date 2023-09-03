@@ -3,82 +3,28 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSackDollar, faLocationDot, faRobot } from '@fortawesome/free-solid-svg-icons'
-export default function ListJobs() {
+import { DollarOutlined, BorderOutlined, EnvironmentOutlined } from '@ant-design/icons';
+import { useAppDispatch } from '@/app/redux/services/hook';
+import { upOpenJob, setDetailJob } from '@/app/redux/featues/users/jobsSlice';
 
+
+
+
+type Props = {
+     params: DetailJob[]
+}
+
+export default function ListJobs({params}: Props) {
+    
+    const dispatch = useAppDispatch()
     const [isHighlighted, setIsHighlighted] = useState<number>(0);
-    const data = [
-        {
-            timePost:1692062066253,
-            company:{
-                name:"Viettel",
-                logo:"https://itviec.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN09SR3c9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8116cf4b23cb755b3b556d410e98ed210b2f68c4/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFhb3ciLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--bb0ebae071595ab1791dc0ad640ef70a76504047/logo%20Viettel.JPG"
-            },
-            job: {
-                title:"05 Jr/Mid Java Developer(Spring/SQL)",
-                address:"Hà Nội - Hồ Chí Minh",
-                method:" At office",
-                skills:["Java", "Node", "Sql"],
-                wage:2000
-            },
-            reasons:[
-                "Làm việc với các công nghệ mới nhất",
-                "Lĩnh vực chứng khoán, tài chính hấp dẫn",
-                "Liên tục được đào tạo chuyên môn, kĩ năng"
-    
-            ]
-        },
-        {
-            timePost:1692062066253,
-            company:{
-                name:"Viettel",
-                logo:"https://itviec.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN09SR3c9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8116cf4b23cb755b3b556d410e98ed210b2f68c4/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFhb3ciLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--bb0ebae071595ab1791dc0ad640ef70a76504047/logo%20Viettel.JPG"
-            },
-            job: {
-                title:"05 Jr/Mid Java Developer(Spring/SQL)",
-                address:"Hà Nội - Hồ Chí Minh",
-                method:" At office",
-                skills:["Java", "Node", "Sql"],
-                wage:2000
-            },
-            reasons:[
-                "Làm việc với các công nghệ mới nhất",
-                "Lĩnh vực chứng khoán, tài chính hấp dẫn",
-                "Liên tục được đào tạo chuyên môn, kĩ năng"
-    
-            ]
-        },
-        {
-            timePost:1692062066253,
-            company:{
-                name:"Viettel",
-                logo:"https://itviec.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBN09SR3c9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8116cf4b23cb755b3b556d410e98ed210b2f68c4/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFhb3ciLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--bb0ebae071595ab1791dc0ad640ef70a76504047/logo%20Viettel.JPG"
-            },
-            job: {
-                title:"05 Jr/Mid Java Developer(Spring/SQL)",
-                address:"Hà Nội - Hồ Chí Minh",
-                method:" At office",
-                skills:["Java", "Node", "Sql"],
-                wage:2000
-            },
-            reasons:[
-                "Làm việc với các công nghệ mới nhất",
-                "Lĩnh vực chứng khoán, tài chính hấp dẫn",
-                "Liên tục được đào tạo chuyên môn, kĩ năng"
-    
-            ]
-        }
-    ]
-
-    
-      
 
 
-    const handleHighlight = (index: number) => {
+
+    const handleHighlight = (index: number,data : DetailJob) => {
 
         setIsHighlighted(index);
-        
+        dispatch(setDetailJob(data))
         
     };
         
@@ -97,7 +43,7 @@ export default function ListJobs() {
                 return(
                 <div 
                     key={index}
-                    onClick={()=>handleHighlight(index)} 
+                    onClick={()=>handleHighlight(index,data)} 
                     className={`xxx p-5 mb-5  relative rounded-md bg-white  ${isHighlighted === index ? 'border border-red-500 bg-[#fff4e9] outlineRed'  : ''}`}
                 >
                     <div className='flex justify-center p-1 left-full -translate-x-full bg-red-600 absolute w-32 rounded-l-lg bfTriangle' >
@@ -116,13 +62,23 @@ export default function ListJobs() {
                             />
                             <Link href="/#" className='flex items-center'>{data.company.name}</Link>                    
                         </div>
-                        <span className='text-[#19b23c] font-bold '><FontAwesomeIcon className=' mr-2' icon={faSackDollar} style={{color: "#19c23b",}}/>UP To ${data.job.wage}</span>
+                        <div className='text-[#19b23c] font-bold  flex  items-center'>
+                            <DollarOutlined className='mr-2' />
+                            <span>UP To $</span>
+                            <span>{data.job.wage}</span>
+                        </div>
                     </div>
             
                     <div className='border-dotted border-b mt-2'>
-                        <div className='flex flex-col'>
-                            <span><FontAwesomeIcon className='mr-2 max-w-xl' icon={faRobot} style={{color: "#9eb5db",}} />{data.job.method}</span>
-                            <span><FontAwesomeIcon className='mr-4 ml-1' icon={faLocationDot} style={{color: "#8393af",}} />{data.job.address}</span>
+                        <div className='flex flex-col text-gray-400'>
+                            <span className='flex items-center'>
+                                <BorderOutlined className='mr-2' />
+                                {data.job.method}
+                            </span>
+                            <span className='flex items-center'>
+                                <EnvironmentOutlined className='mr-2' />
+                                {data.job.address}
+                            </span>
                         </div>
 
                         <div className='flex'>
@@ -150,7 +106,7 @@ export default function ListJobs() {
 
   return (
     <div className='  w-2/5 top-[95px]  '>
-          {content(data)}                      
+          {params && content(params)}                      
     </div>
 
   )
