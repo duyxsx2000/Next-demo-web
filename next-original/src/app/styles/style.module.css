@@ -1,0 +1,45 @@
+.redlines::before{
+    content: '';
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 0;
+    width: 180px;
+    top: 48px;
+    height: 3px; /* Điều chỉnh độ dày của đường kẻ */
+    background-color: red; /* Màu đỏ */
+}
+.transparentlines::before{
+    content: '';
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 0;
+    width: 180px;
+    top: 48px;
+    height: 3px; /* Điều chỉnh độ dày của đường kẻ */
+    background-color: rgba(133, 131, 131, 0.723); /* Màu đỏ */
+}
+
+
+.percentage-chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+  }
+.clickHere::before{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-top: 20px solid rgba(103,122,251,0.9);
+    
+};
+

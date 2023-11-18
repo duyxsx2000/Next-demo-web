@@ -1,15 +1,7 @@
 import { NextResponse } from 'next/server'
 
-export async function GET(request: Request) {
-    
-  const res = await fetch('https://jsonplaceholder.typicode.com/users')
-  
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
-  const data = await res.json()
-
+export async function POST(request: Request) {
+  const body = await request.json()
  
   return NextResponse.json({yeu:"taca"})
 }

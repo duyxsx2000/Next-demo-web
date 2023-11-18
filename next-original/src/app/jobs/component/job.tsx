@@ -5,6 +5,8 @@ import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/services/hook';
 import { test } from '@/app/redux/featues/users/uerSlice';
 import { EnvironmentOutlined, BorderOutlined, DashboardOutlined, DollarOutlined } from '@ant-design/icons';
+import postDataJobs from '@/app/lip/postDataJobs';
+import { useRouter } from 'next/navigation';
 type job = {
     title: string,
     address: string,
@@ -20,69 +22,82 @@ type company = {
 }
 
 type Props = {
-    paramDetailJob: DetailJob
+    paramJob: TypeJob,
+    title: string
 }
 
-export default function Job({paramDetailJob}: Props) {
+const styleEml = "flex items-center"
+export default function Job({paramJob, title}: Props) {
+
     const dispatch = useAppDispatch()
-    const [data, setData] = useState<DetailJob>(paramDetailJob)
-    const dataDetailJob = useAppSelector((state)=> state.jobs.detailJob)
-
-    useEffect(()=>{
-
-        if(!dataDetailJob){
-            setData(paramDetailJob)
-          
-        }
-
-    })
-
-
-    useEffect(()=>{
-
-        if(paramDetailJob)
-
-        dispatch(test(`/apply/${paramDetailJob.id}/${paramDetailJob.job.title}`))
-        
-        setData(dataDetailJob)
+    const [data, setData] = useState<TypeJob>(paramJob)
+    const dataJobRedux = useAppSelector((state)=> state.jobs.dataJob)
+    const route = useRouter()
+   
+       console.log(data);
        
-    },[dataDetailJob])
+
+    useEffect(()=>{
+
+        if(paramJob)
+            dispatch(test(`/apply/${paramJob.idJob}/${paramJob.job.jobTitle}`))
+        if(dataJobRedux)
+
+        setData(dataJobRedux)
+       
+    },[dataJobRedux])
+
+    const date = (time: Date) => {
+        const datePost = new Date(time);
+        const timeAgo = Date.now() - datePost.getTime();
+        const hours =Math.floor(timeAgo / 3600000);
+        return hours
+    }
     
-    const  jobDetailsCard = function(detailJob: DetailJob){
+    const handleAccept = (idJob: string) => {
+        const acceptJob = async (id: string) =>{
+            try {
+                const res = await postDataJobs('accept-job',id)
+                if(res) route.push('/dashboard-admin')
+            } catch (error) {
+                console.log(error,'errorrrr');
+                   
+            }
+        };
+        acceptJob(idJob);
+    }
+    const  jobDetailsCard = function(Job: TypeJob){
         
-        if(detailJob){
+        const datePost = new Date(Job.datePost)
+        const timeAgo = Date.now() - datePost.getTime()
+        const hours =Math.floor(timeAgo / 3600000)
+        const styleEml = "flex items-center"
 
-            const timeAgo = Date.now() - detailJob.timePost 
-            const hours =Math.floor(timeAgo / 3600000)
-            const styleEml = "flex items-center"
-
-            return(
-                <div  className='py-4 space-y-2 text-[#414042] border-dotted border-t border-b border-[#414042]'>
-                    
-                    <div className={styleEml}>
-                        <EnvironmentOutlined />
-                        <span className='ml-2'>{detailJob.job.address}</span>
-                    </div>
-                    <div className={styleEml}>
-                        <BorderOutlined />  
-                        <span className='ml-2'>At office</span>
-                    </div>
-                    <div className={styleEml}>
-                        <DashboardOutlined />
-                        <span className='ml-2'>{hours}hours ago</span>
-                    </div>
-    
-                    <div className='space-x-4'>
-                        <span>SkillS:</span>
-                        {detailJob.job.skills.map((skill,index)=>{
-                        return <span key={index} className=' p-1 rounded-full border-[#414042] border'>{skill}</span>
-                        })}                 
-                    </div>
-                    
+        return(
+            <div  className='py-4 space-y-2 text-[#414042] border-dotted border-t border-b border-[#414042]'>
+                
+                <div className={styleEml}>
+                    <EnvironmentOutlined />
+                    <span className='ml-2'>{Job.job.jobAddress}</span>
                 </div>
-            )
-        }
-             
+                <div className={styleEml}>
+                    <BorderOutlined />  
+                    <span className='ml-2'>At office</span>
+                </div>
+                <div className={styleEml}>
+                    <DashboardOutlined />
+                    <span className='ml-2'>{hours}hours ago</span>
+                </div>
+
+                <div className='space-x-4'>
+                    <span>SkillS:</span>
+                    {Job.job.jobSkills.map((skill,index)=>{
+                    return <span key={index} className=' p-1 rounded-full border-[#414042] border'>{skill}</span>
+                    })}                 
+                </div>
+                
+            </div>
+        )
     };
 
     const reasonsToJoin = function(reasons: string[]){
@@ -146,7 +161,7 @@ export default function Job({paramDetailJob}: Props) {
         )
     }
 
-  if(!paramDetailJob) return
+  if(!paramJob) return
 
   return (
     <div className='h-full bg-white'>
@@ -164,33 +179,70 @@ export default function Job({paramDetailJob}: Props) {
                 />
 
                 <div className='border-b ml-4 grow mt-5'>
-                    <h1 className=' font-bold text-2xl'>{paramDetailJob.job.title} </h1>
-                    <Link className=' text-lg text-[#414042]' href="/#">{paramDetailJob.company.name}</Link>
+                    <h1 className=' font-bold text-2xl'>{paramJob.job.jobTitle} </h1>
+                    <Link className=' text-lg text-[#414042]' href="/#">{paramJob.company.companyName}</Link>
 
                     <p className='flex items-center text-lg text-[#19b23c]'>
                         <DollarOutlined className='mr-2'/>
                         <span>up to</span> 
-                        {paramDetailJob.job.wage}
+                        {paramJob.job.jobWage.toString()}
                         <span>$</span>
                     </p>
 
                 </div>  
 
             </div>
+            {title === 'all'
+                &&  <div className='flex justify-center items-center mb-4  bg-red-500 w-full h-10 '>
+                        <Link className='text-center w-full  text-white' href={`/apply/${paramJob.idJob}/${paramJob.job.jobTitle}`}>Apply Now</Link>    
+                    </div>
+            }
+            {title === 'await'
+                &&  <div className='flex justify-center items-center mb-4  bg-red-500 w-full h-10 '>
+                        <button 
+                            className='text-center w-full  text-white' 
+                            onClick={() =>handleAccept(paramJob.idJob)} 
+                            type='button'
+                        >
+                            Accept Now
+                        </button>    
+                    </div>
+            }
 
-            <div className='flex justify-center items-center mb-4  bg-red-500 w-full h-8 '>
-                <Link className='text-center w-full  text-white' href={`/apply/${paramDetailJob.id}/${paramDetailJob.job.title}`}>Apply Now</Link>    
-            </div>
 
         </header>
 
-        <main className='px-5 h-4/5 space-y-3   p-4 overflow-auto   '>
-             {data && jobDetailsCard(data)}
-              {data && reasonsToJoin(data.reasons)}
-              {data && jobDescription(data.jobDescription)}
-              { data && skillAndExperience(data.request)}
-              {companyIntroduction()}
-             
+        <main className='px-5 h-3/5 space-y-3   p-4 overflow-auto   '>
+            {data && (
+                <div  className='py-4 space-y-2 text-[#414042] border-dotted border-t border-b border-[#414042]'>
+    
+                <div className={styleEml}>
+                    <EnvironmentOutlined />
+                    <span className='ml-2'>{data.job.jobAddress}</span>
+                </div>
+                <div className={styleEml}>
+                    <BorderOutlined />  
+                    <span className='ml-2'>At office</span>
+                </div>
+                <div className={styleEml}>
+                    <DashboardOutlined />
+                    <span className='ml-2'>{date(data.dateAccept)}hours ago</span>
+                </div>
+
+                <div className='space-x-4'>
+                    <span>SkillS:</span>
+                    {data.job.jobSkills.map((skill,index)=>{
+                    return <span key={index} className=' p-1 rounded-full border-[#414042] border'>{skill}</span>
+                    })}                 
+                </div>
+                
+            </div>
+            )}
+            {data && reasonsToJoin(data.reasons)}
+            {data && jobDescription(data.description)}
+            {data && skillAndExperience(data.requirements)}
+            {companyIntroduction()}
+            
         </main> 
     </div>
   )

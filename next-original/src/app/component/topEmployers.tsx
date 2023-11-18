@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
-
+import Image from 'next/image'
+import { RightOutlined } from '@ant-design/icons'
 type props = {
      listTopEmployers: Employers[]
 }
@@ -23,7 +22,12 @@ export default function TopEmployers({listTopEmployers}: props) {
                     <div className='flex flex-col justify-between mx-5 rounded-md  w-full h-full bg-white relative shadow-md   '>
 
                          <div className='flex justify-center h-28 w-1/2 absolute -top-16 left-1/4   '>
-                              <img className=' w-full h-full object-fill bg-white rounded-md shadow-md border-gray-300 border-2'  src={employer.image}></img>
+                              
+                              <Image className=' w-full h-full object-fill bg-white rounded-md shadow-md border-gray-300 border-2' 
+                                     src={employer.image} 
+                                     alt={employer.title} 
+                                     width={200} height={160} 
+                              />
                          </div>
 
                          <div className='h-16'></div>
@@ -37,7 +41,11 @@ export default function TopEmployers({listTopEmployers}: props) {
                                    {skill(employer.jobs.skills)}
                               </ul>
 
-                              <p className='mt-5 text-center text-blue-800'>{employer.jobs.quantity} Job<FontAwesomeIcon icon={faChevronRight} /></p>
+                              <div className='mt-5 flex justify-center items-center space-x-2 text-center text-blue-800'>
+                                   {employer.jobs.quantity}
+                                   <span className='ml-2'>jobs</span>
+                                   <RightOutlined />
+                              </div>
                          </div>
 
                     </div>
@@ -52,7 +60,7 @@ export default function TopEmployers({listTopEmployers}: props) {
     <div className=' bg-gray-300'>
 
         <h1 className=' text-center font-bold text-2xl pt-3 '>Top Employers</h1>
-        <div className='flex justify-around flex-wrap space-x-5 px-60 py-11 h-full w-full '>
+        <div className='flex justify-around flex-wrap  py-11 h-full w-full lg:space-x-5 lg:px-60  '>
           {employerCard(listTopEmployers)}
         </div>     
     </div>

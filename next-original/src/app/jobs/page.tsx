@@ -6,12 +6,17 @@ import Slideshow from '../component/slideShow/slide'
 import Footer from '../component/footer'
 import ListJobs from './component/listJobs'
 import Job from './component/job'
-import dataDetailJobs from "../../../data/dataDetailJobs,.json"
+import dataDetailJobs from "../../../data/dataDetailJobs.json"
+import getDataJobs from '../lip/getListJobs'
+
+const keyGetAllJobs = process.env.API_KEY_GET_JOBS 
 export default async function jobsPage() {
     
     const dataHome: Promise<DataHome> = await getDataHome()
     const data = await dataHome
- 
+    const key = "Key-GET-jobs-all"
+    const dataAllJobs: Promise<TypeJob[]> =  await getDataJobs(keyGetAllJobs, "none", "none",'','','')
+    const dataJobs = await dataAllJobs
 
     
 
@@ -37,9 +42,9 @@ export default async function jobsPage() {
             <div className='flex justify-center bg-[rgba(194,195,196,0.14)]'>
                 <div className=' mt-[10px] flex   w-3/4 space-x-5  '>
                  
-                    <ListJobs params={dataDetailJobs}></ListJobs>
-                    <div className=' top-[95px] bg-white sticky left-1/2 w-3/5 h-[1000px]'>
-                        <Job paramDetailJob={dataDetailJobs[0]}></Job>
+                    <ListJobs params={dataJobs}></ListJobs>
+                    <div className=' top-[95px] bg-white sticky left-1/2 w-3/5 h-[650px]'>
+                        <Job title='' paramJob={dataJobs[0]}></Job>
                     </div>
                 </div>
             </div>

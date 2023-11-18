@@ -22,9 +22,9 @@ export default  function SearchAllJobs() {
     if(!data){
 
       const getData = async ()=>{
-        const response = await getListJobs({title:"ALL Jobs", dataSearch: search},keyJobs);
-        const dataJobs = await response;
-        setJobsList(dataJobs);
+        // const response = await getListJobs({title:"ALL Jobs", dataSearch: search},keyJobs);
+        // const dataJobs = await response;
+        // setJobsList(dataJobs);
       };
       getData();
 
@@ -38,9 +38,8 @@ export default  function SearchAllJobs() {
       
     }
     
-
-    
-  },[search])
+ 
+  },[search, data])
 
 console.log(search,'2222222222222222222222222');
 
